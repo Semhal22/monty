@@ -55,3 +55,31 @@ void nop(stack_t **stack, unsigned int line_number)
 	(void) stack;
 	(void) line_number;
 }
+/**
+ * sub - subracts the top element from the second top element
+ * @stack: Pointer to head of stack
+ * @Line_number: line number of command
+ */
+void sub(stack_t **stack, unsigned int line_number)
+{
+	stack_t *temp;
+	int count = 0, diff = 0;
+
+	count = count_nodes(*stack);
+	if (count < 2)
+	{
+		fprintf(stderr, "L%d: can't sub, stack too short\n", line_number);
+		handle_error(*stack);
+		exit(EXIT_FAILURE);
+	}
+	temp = *stack;
+	count = 0;
+	while (count < 2)
+	{
+		diff = temp->n - diff;
+		temp = temp->next;
+		count++;
+	}
+	pop(stack, line_number);
+	(*stack)->n = diff;
+}
