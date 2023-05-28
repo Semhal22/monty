@@ -1,4 +1,5 @@
 #include "monty.h"
+struct global_vars global = {NULL, NULL};
 /**
  * main - Entry point for the Monty ByteCode Interpreter
  * @argc: Argument count
@@ -8,7 +9,6 @@
  */
 int main(int argc, char **argv)
 {
-	FILE *fp;
 	instruction_t instructions[] = {
 		{"push", push},
 		{"pall", pall},
@@ -20,13 +20,13 @@ int main(int argc, char **argv)
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	fp = fopen(argv[1], "r");
-	if (fp == NULL)
+	global.fp = fopen(argv[1], "r");
+	if (global.fp == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	read_file(fp, instructions);
-	fclose(fp);
+	read_file(instructions);
+	fclose(global.fp);
 	return (0);
 }

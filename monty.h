@@ -5,7 +5,19 @@
 #include <string.h>
 #include <stdlib.h>
 #include <sys/types.h>
-extern char *line;
+/**
+ * struct global_vars - global variables to be used in program
+ * @line: one line of the monty code
+ * @fp: pointer to a file
+ *
+ * Description: global variables
+ */
+struct global_vars
+{
+	char *line;
+	FILE *fp;
+};
+extern struct global_vars global;
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -34,10 +46,10 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-int read_file(FILE *fp, instruction_t instructions[]);
+int read_file(instruction_t instructions[]);
 int _atoi(char *s);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t *head);
-void handle_error(char *line, stack_t *head);
+void handle_error(stack_t *head);
 #endif /* MONTY */

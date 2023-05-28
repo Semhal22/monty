@@ -1,13 +1,11 @@
 #include "monty.h"
-char *line = NULL;
 /**
  * read_file - Reads a file
- * @fp: pointer to the file
  * @instructions: array of instructions
  *
  * Return: 0
  */
-int read_file(FILE *fp, instruction_t instructions[])
+int read_file(instruction_t instructions[])
 {
 	stack_t *stack = NULL;
 	size_t len = 0;
@@ -15,14 +13,14 @@ int read_file(FILE *fp, instruction_t instructions[])
 	char *opcode;
 	int found, i, line_number = 0;
 
-	while ((bytes_read = getline(&line, &len, fp)) != -1)
+	while ((bytes_read = getline(&(global.line), &len, global.fp)) != -1)
 	{
 		line_number++;
-		line[strcspn(line, "\n")] = '\0';
-		if (!line)
+		global.line[strcspn(global.line, "\n")] = '\0';
+		if (!global.line)
 			continue;
 		found = 0;
-		opcode = strtok(line, " \t");
+		opcode = strtok(global.line, " \t");
 		if (!opcode)
 			continue;
 		for (i = 0; instructions[i].opcode != NULL; i++)
@@ -37,13 +35,13 @@ int read_file(FILE *fp, instruction_t instructions[])
 		if (!found)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
-			free(line);
+			free(global.line);
 			free_stack(stack);
-			fclose(fp);
+			fclose(global.fp);
 			exit(EXIT_FAILURE);
 		}
 	}
-	free(line);
+	free(global.line);
 	free_stack(stack);
 	return (0);
 }

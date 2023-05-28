@@ -15,19 +15,19 @@ void push(stack_t **stack, unsigned int line_number)
 	if (arg == NULL)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		handle_error(line, *stack);
+		handle_error(*stack);
 	}
 	num = _atoi(arg);
 	if (!num)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		handle_error(line, *stack);
+		handle_error(*stack);
 	}
 	pointer = malloc(sizeof(stack_t));
 	if (pointer == NULL)
 	{
 		perror("Error: malloc failed\n");
-		handle_error(line, *stack);
+		handle_error(*stack);
 		exit(EXIT_FAILURE);
 	}
 	pointer->n = num;
