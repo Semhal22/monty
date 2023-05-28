@@ -94,7 +94,7 @@ void divide(stack_t **stack, unsigned int line_number)
 	count = count_nodes(*stack);
 	if (count < 2)
 	{
-		fprintf(stderr, "L%d: can't sub, stack too short\n", line_number);
+		fprintf(stderr, "L%d: can't div, stack too short\n", line_number);
 		handle_error(*stack);
 	}
 	top = *stack;
