@@ -19,6 +19,7 @@ int main(int argc, char **argv)
 		{"nop", nop},
 		{"sub", sub},
 		{"div", divide},
+		{"mul", mul},
 		{NULL, NULL}
 	};
 
