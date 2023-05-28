@@ -32,7 +32,6 @@ void add(stack_t **stack, unsigned int line_number)
 	{
 		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
 		handle_error(*stack);
-		exit(EXIT_FAILURE);
 	}
 	temp = *stack;
 	count = 0;
@@ -58,7 +57,7 @@ void nop(stack_t **stack, unsigned int line_number)
 /**
  * sub - subracts the top element from the second top element
  * @stack: Pointer to head of stack
- * @Line_number: line number of command
+ * @line_number: line number of command
  */
 void sub(stack_t **stack, unsigned int line_number)
 {
@@ -70,7 +69,6 @@ void sub(stack_t **stack, unsigned int line_number)
 	{
 		fprintf(stderr, "L%d: can't sub, stack too short\n", line_number);
 		handle_error(*stack);
-		exit(EXIT_FAILURE);
 	}
 	temp = *stack;
 	count = 0;
@@ -82,4 +80,31 @@ void sub(stack_t **stack, unsigned int line_number)
 	}
 	pop(stack, line_number);
 	(*stack)->n = diff;
+}
+/**
+ * divide - divides the second top element by the top element of stack
+ * @stack: Pointer to head of stack
+ * @line_number: line number of command
+ */
+void divide(stack_t **stack, unsigned int line_number)
+{
+	stack_t *top, *second;
+	int count = 0, quotient = 1;
+
+	count = count_nodes(*stack);
+	if (count < 2)
+	{
+		fprintf(stderr, "L%d: can't sub, stack too short\n", line_number);
+		handle_error(*stack);
+	}
+	top = *stack;
+	if (top->n == 0)
+	{
+		fprintf(stderr, "L%d: division by zero\n", line_number);
+		handle_error(*stack);
+	}
+	second = (*stack)->next;
+	quotient = second->n / top->n;
+	pop(stack, line_number);
+	(*stack)->n = quotient;
 }
