@@ -91,7 +91,7 @@ void pop(stack_t **stack, unsigned int line_number)
 }
 /**
  * swap - Swap the two top elements of a stack
- * @stack: head of stack
+ * @stack: pointer to head of stack
  * @line_number: line number of command
  */
 void swap(stack_t **stack, unsigned int line_number)
@@ -99,11 +99,7 @@ void swap(stack_t **stack, unsigned int line_number)
 	stack_t *temp = *stack;
 	int count = 0;
 
-	while (temp != NULL)
-	{
-		count++;
-		temp = temp->next;
-	}
+	count = count_nodes(temp);
 	if (count < 2)
 	{
 		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);

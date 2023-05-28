@@ -48,11 +48,13 @@ typedef struct instruction_s
 } instruction_t;
 int read_file(instruction_t instructions[]);
 int _atoi(char *s);
+int count_nodes(stack_t *head);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
+void add(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t *head);
 void handle_error(stack_t *head);
 #endif /* MONTY */

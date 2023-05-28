@@ -6,4 +6,5 @@
 <li>1. pint</li>
 <li>2. pop</li>
 <li>3. swap</li>
+<li>4. add</li>
 </ul>
