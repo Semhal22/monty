@@ -12,13 +12,15 @@ int _atoi(char *s)
 	len = strlen(s);
 	for (i = 0; i < len; i++)
 	{
-		if (s[0] == '-')
-		{
-			sign = -1;
-			continue;
-		}
 		if (s[i] < '0' || s[i] > '9')
+		{
+			if (i == 0 && s[i] == '-')
+			{
+				sign = -1;
+				continue;
+			}
 			break;
+		}
 		result = result * 10 + (s[i] - '0');
 	}
 	if (i < len)

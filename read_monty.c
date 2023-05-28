@@ -22,7 +22,7 @@ int read_file(FILE *fp, instruction_t instructions[])
 		if (!line)
 			continue;
 		found = 0;
-		opcode = strtok(line, "( \t");
+		opcode = strtok(line, " \t");
 		if (!opcode)
 			continue;
 		for (i = 0; instructions[i].opcode != NULL; i++)
