@@ -20,6 +20,7 @@ int main(int argc, char **argv)
 		{"sub", sub},
 		{"div", divide},
 		{"mul", mul},
+		{"mod", mod},
 		{NULL, NULL}
 	};
 
