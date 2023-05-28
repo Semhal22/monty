@@ -21,6 +21,11 @@ int read_file(instruction_t instructions[])
 			continue;
 		found = 0;
 		opcode = strtok(global.line, " \t");
+		if (opcode[0] == '#')
+		{
+			nop(&stack, line_number);
+			continue;
+		}
 		if (!opcode)
 			continue;
 		for (i = 0; instructions[i].opcode != NULL; i++)
