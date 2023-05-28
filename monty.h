@@ -35,7 +35,9 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 int read_file(FILE *fp, instruction_t instructions[]);
+int _atoi(char *s);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t *head);
+void handle_error(char *line, stack_t *head);
 #endif /* MONTY */

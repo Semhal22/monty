@@ -20,9 +20,11 @@ int read_file(FILE *fp, instruction_t instructions[])
 		line_number++;
 		line[strcspn(line, "\n")] = '\0';
 		if (!line)
-			break;
+			continue;
 		found = 0;
-		opcode = strtok(line, " \t");
+		opcode = strtok(line, "( \t");
+		if (!opcode)
+			continue;
 		for (i = 0; instructions[i].opcode != NULL; i++)
 		{
 			if (strcmp(instructions[i].opcode, opcode) == 0)
@@ -35,6 +37,9 @@ int read_file(FILE *fp, instruction_t instructions[])
 		if (!found)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
+			free(line);
+			free_stack(stack);
+			fclose(fp);
 			exit(EXIT_FAILURE);
 		}
 	}

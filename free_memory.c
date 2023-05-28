@@ -15,3 +15,15 @@ void free_stack(stack_t *head)
 		free(current);
 	}
 }
+/**
+ * handle_error - Handles error cases
+ * @line: A command of file
+ * @stack: Stack to be freed
+ *
+ */
+void handle_error(char *line, stack_t *stack)
+{
+	free(line);
+	free_stack(stack);
+	exit(EXIT_FAILURE);
+}

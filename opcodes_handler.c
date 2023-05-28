@@ -11,22 +11,23 @@ void push(stack_t **stack, unsigned int line_number)
 	char *arg;
 	stack_t *pointer;
 
-	arg = strtok(NULL, " ");
+	arg = strtok(NULL, " )");
 	if (arg == NULL)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
+		handle_error(line, *stack);
 	}
-	num = atoi(arg);
+	num = _atoi(arg);
 	if (!num)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
+		handle_error(line, *stack);
 	}
 	pointer = malloc(sizeof(stack_t));
 	if (pointer == NULL)
 	{
 		perror("Error: malloc failed\n");
+		handle_error(line, *stack);
 		exit(EXIT_FAILURE);
 	}
 	pointer->n = num;
