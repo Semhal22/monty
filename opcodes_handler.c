@@ -17,18 +17,12 @@ void push(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		handle_error(*stack);
 	}
-	num = _atoi(arg);
-	if (!num)
-	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		handle_error(*stack);
-	}
+	num = _atoi(arg, *stack, line_number);
 	pointer = malloc(sizeof(stack_t));
 	if (pointer == NULL)
 	{
 		perror("Error: malloc failed\n");
 		handle_error(*stack);
-		exit(EXIT_FAILURE);
 	}
 	pointer->n = num;
 	pointer->next = *stack;
@@ -66,7 +60,6 @@ void pint(stack_t **stack, unsigned int line_number)
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 		handle_error(*stack);
-		exit(EXIT_FAILURE);
 	}
 	printf("%d\n", top->n);
 }
@@ -83,7 +76,6 @@ void pop(stack_t **stack, unsigned int line_number)
 	{
 		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
 		handle_error(*stack);
-		exit(EXIT_FAILURE);
 	}
 	temp = *stack;
 	*stack = (*stack)->next;
@@ -104,7 +96,6 @@ void swap(stack_t **stack, unsigned int line_number)
 	{
 		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
 		handle_error(*stack);
-		exit(EXIT_FAILURE);
 	}
 	temp = *stack;
 	*stack = (*stack)->next;

@@ -47,7 +47,7 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 int read_file(instruction_t instructions[]);
-int _atoi(char *s);
+int _atoi(char *s, stack_t *head, unsigned int line_number);
 int count_nodes(stack_t *head);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);

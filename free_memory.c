@@ -8,12 +8,14 @@ void free_stack(stack_t *head)
 {
 	stack_t *current;
 
+	free(global.line);
 	while (head != NULL)
 	{
 		current = head;
 		head = head->next;
 		free(current);
 	}
+	fclose(global.fp);
 }
 /**
  * handle_error - Handles error cases
@@ -22,8 +24,6 @@ void free_stack(stack_t *head)
  */
 void handle_error(stack_t *stack)
 {
-	free(global.line);
 	free_stack(stack);
-	fclose(global.fp);
 	exit(EXIT_FAILURE);
 }

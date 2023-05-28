@@ -35,13 +35,10 @@ int read_file(instruction_t instructions[])
 		if (!found)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
-			free(global.line);
 			free_stack(stack);
-			fclose(global.fp);
 			exit(EXIT_FAILURE);
 		}
 	}
-	free(global.line);
 	free_stack(stack);
 	return (0);
 }

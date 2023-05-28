@@ -2,10 +2,12 @@
 /**
  * _atoi - convert a string to an integer.
  * @s: the string to be comverted.
+ * @head: head of stack
+ * @line_number: line number of command
  * Return: The integer value of the converted string.
  * -1 if string cannot be converted or if it contains strings
  */
-int _atoi(char *s)
+int _atoi(char *s, stack_t *head, unsigned int line_number)
 {
 	int i, len, sign = 1, result = 0;
 
@@ -24,7 +26,9 @@ int _atoi(char *s)
 		result = result * 10 + (s[i] - '0');
 	}
 	if (i < len)
-		return (0);
-	else
-		return (result * sign);
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		handle_error(head);
+	}
+	return (result * sign);
 }
