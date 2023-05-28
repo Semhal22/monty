@@ -7,4 +7,5 @@
 <li>2. pop</li>
 <li>3. swap</li>
 <li>4. add</li>
+<li>5. nop</li>
 </ul>

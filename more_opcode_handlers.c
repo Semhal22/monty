@@ -45,3 +45,13 @@ void add(stack_t **stack, unsigned int line_number)
 	pop(stack, line_number);
 	(*stack)->n = sum;
 }
+/**
+ * nop - doesn't do anything
+ * @stack: Pointer to head of stack
+ * @line_number: line number of command
+ */
+void nop(stack_t **stack, unsigned int line_number)
+{
+	(void) stack;
+	(void) line_number;
+}
